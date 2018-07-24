@@ -1,17 +1,40 @@
 <h1>Restaurants</h1>
 
+<%# This is the form we used to assign user input as values of our %>
+<%# params variable. Check our POST route in app.rb %>
 <form action="/restaurants" method="post">
+  <%# We told this form to do a POST in our '/restaurants' route! %>
+  <%# Check line 54 in our app.rb, it's all there. =) %>
+
   <label for="name">Name:</label>
   <input name="name" type="text">
+  <%# This is the our first input. The name we give it is going to be the key to %>
+  <%# which the value passed by user is going to be assigned in our params variable %>
+  <%# So if the user types "Huzzah" in the name input, our params will have the following %>
+  <%# params[:name] => "Huzzah" %>
+  <%# Check our POST route to see how we used it there. %>
+
   <label for="address">Address:</label>
   <input name="address" type="text">
+  <%# Same as the above. But this time we're assigning the value to the :address key %>
+
   <input type="submit" value="Create Restaurant">
+  <%# In HTML, whenever you click a submit button, it sends the form it's currently in. %>
+  <%# So when this is clicked, it checks where our form is poiting (check line 5), and %>
+  <%# sends the information there. %>
 </form>
 
 <ol>
   <% @restaurants.each do |restaurant| %>
+  <%# This was the instance variable with all our restaurants, %>
+  <%# defined at line 19 of our app.rb %>
+  <%# We're looping over it to display our restaurants. %>
+
     <li>
       <a href=<%= "/restaurant/#{restaurant.id}" %>><%= restaurant.name %></a>
+      <%# This is where we print our restaurants. And create a link that points %>
+      <%# to their very own show routes!, defined by their ids %>
+      <%# Check line 29 of the app.rb for more info. %>
     </li>
   <% end %>
 </ol>
